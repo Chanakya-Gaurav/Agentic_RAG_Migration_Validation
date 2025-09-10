@@ -3,6 +3,12 @@
 # SAS® OnDemand for Academics
 ### Free SAS Viya Platform 
 https://welcome.oda.sas.com/
+User ID: chanakya.kothrud@gmail.com
+Pwd: eZpas$w0rd
+Launch SAS Viya
+SAS User: 
+
+Sample Datasets: https://support.sas.com/documentation/onlinedoc/viya/examples.htm
 
 Steps to access SAS OnDemand for Academics
 Register yourself and create your account by visiting registration page

@@ -5,6 +5,30 @@ import json
 import random
 from typing import Dict, List
 
+#Execution
+#streamlit run app.py
+
+# ---------------------------
+# Common Functions
+# --------------------------
+#Convert the raw byte values (ASCII codes) instead of decoded strings
+def decode_value(x):
+    if isinstance(x, (bytes, bytearray)):
+        #E.g. b'Alice' → decoded to "Alice"
+        #.strip() cleans trailing spaces from SAS fixed-width CHAR fields.
+        return x.decode("utf-8", errors="ignore").strip()
+    if isinstance(x, (list, tuple)) or hasattr(x, "__iter__") and not isinstance(x, str):
+        try:
+            #Example [65,108,105,99,101] → converted to bytes([65,108,105,99,101]) 
+            # = b"Alice" → "Alice"
+            #.strip() cleans trailing spaces from SAS fixed-width CHAR fields.
+            return bytes(x).decode("utf-8", errors="ignore").strip()
+        except Exception:
+            return x
+    return x
+# ---------------------------
+# ---------------------------
+
 # ---------------------------
 # Simulated Knowledge Base (Mapping + Validation Templates)
 # ---------------------------
@@ -94,11 +118,18 @@ st.title("🔍 Agentic RAG Migration Validation & Testing (SAS → Snowflake Dem
 st.sidebar.header("Upload Data")
 sas_file = st.sidebar.file_uploader("Upload SAS dataset (.sas7bdat or .xpt)", type=["sas7bdat", "xpt"])
 sf_file = st.sidebar.file_uploader("Upload Snowflake migrated data (CSV)", type=["csv"])
+sas_df = None
+sf_df = None
 
 if sas_file:
     try:
         # Pandas will auto-detect format
         sas_df = pd.read_sas(sas_file, format="sas7bdat")
+
+        #Properly decode SAS character variables
+        sas_df = sas_df.applymap(decode_value)
+        sas_df.columns = sas_df.columns.str.lower()
+        
         st.success(f"SAS dataset loaded: {sas_df.shape[0]} rows, {sas_df.shape[1]} cols")
     except Exception as e:
         st.error(f"❌ Error reading SAS dataset: {e}")
