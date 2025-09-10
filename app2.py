@@ -107,6 +107,16 @@ def generate_validation_tests(table: str) -> List[Dict]:
 # ---------------------------
 st.title("🔍 Agentic RAG Migration Validation & Testing (SAS → Snowflake Demo)")
 
+# ---------------------------
+# Reset button in sidebar
+# ---------------------------
+import streamlit as st
+
+if st.sidebar.button("🔄 Reset App"):
+    for key in st.session_state.keys():
+        del st.session_state[key]
+    st.rerun()
+
 st.sidebar.header("Upload Data")
 sas_file = st.sidebar.file_uploader("Upload SAS dataset (.sas7bdat or .xpt)", type=["sas7bdat", "xpt"])
 sf_file = st.sidebar.file_uploader("Upload Snowflake migrated data (CSV)", type=["csv"])
