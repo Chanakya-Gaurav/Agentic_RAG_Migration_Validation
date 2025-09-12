@@ -1,4 +1,4 @@
-cust_id,first_name,last_name,email,birth_dt,Street_Address,City,State,Zipcode,Age
+customer_id,first_name,last_name,email,birth_dt,Street_Address,City,State,Zipcode,Age
 1001,Dorri,Rawlinson,dorri.rawlinson@gmail.com,1947-04-13,653 Hanover Hill,New Haven,CT,6510,78
 1002,Hewet,Darwin,hewet.darwin@live.org,1959-01-08,4085 Sutteridge Alley,Brooklyn,NY,11231,66
 1003,Mort,Zimmermanns,mort.zimmermanns@gmail.com,1954-04-21,23324 Schmedeman Pass,Houston,TX,77070,71
