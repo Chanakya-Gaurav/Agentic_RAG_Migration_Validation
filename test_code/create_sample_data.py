@@ -29,7 +29,7 @@ def generate_birth_date(age):
 
 # Transform the data
 customers_df = pd.DataFrame()
-customers_df['cust_id'] = range(1001, 1001 + len(df))
+customers_df['customer_id'] = range(1001, 1001 + len(df))
 customers_df['first_name'] = df['Customer_Name'].apply(lambda x: x.split()[0])
 customers_df['last_name'] = df['Customer_Name'].apply(lambda x: x.split()[-1])
 customers_df['email'] = df['Customer_Name'].apply(generate_email)
@@ -44,7 +44,7 @@ customers_df['Age'] = df['Age']
 customers_df.to_csv(output_file1, index=False)
 
 creditscore_df = pd.DataFrame()
-creditscore_df['cust_id'] = range(1001, 1001 + len(df))
+creditscore_df['customer_id'] = range(1001, 1001 + len(df))
 creditscore_df['income'] = df['Income']
 creditscore_df['payment_history'] = df['Payment_History']
 creditscore_df['number_of_open_credit_cards'] = df['Number_of_Open_Credit_Cards']
